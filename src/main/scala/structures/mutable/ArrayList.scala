@@ -25,16 +25,18 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * This method is used to resize array or return error of resizing.
-    * If capacity is greater than length of ArrayList - method resizes array and saves all elements
-    * If capacity is less than length of ArrayList - method resizes array and saves elements up to new capacity
-    * If capacity is less than zero - returns Failure with IllegalArgumentException
-    * Time complexity is O(n)
+    - If capacity is greater than length of ArrayList - method resizes array and saves all elements
+    - If capacity is less than length of ArrayList - method resizes array and saves elements up to new capacity
+    - If capacity is less than zero - returns Failure with IllegalArgumentException
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4) // capacity = 4
     *          val s = a.tryReserve(40) // capacity = 40; s = Success
     *          val f = a.tryReserve(-10) // capacity = 40; f = Failure
     *          val b = a.tryReserve(2) // capacity = 2; b = Success
     *          println(a) // prints: ArrayList(1, 2)
+    *          }}}
     * @param capacity new capacity of ArrayList
     * @return Success object with resized ArrayList or Failure with IllegalArgumentException
     */
@@ -44,12 +46,13 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * This method is used to resize array.
-    * If capacity is greater than length of ArrayList - method resizes array and saves all elements
-    * If capacity is less than length of ArrayList - method resizes array and saves elements up to new capacity
-    * If capacity is less than zero - does nothing
-    * Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryReserve'
-    * Time complexity is O(n)
+    - If capacity is greater than length of ArrayList - method resizes array and saves all elements
+    - If capacity is less than length of ArrayList - method resizes array and saves elements up to new capacity
+    - If capacity is less than zero - does nothing
+    * @note Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryReserve'
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4) // capacity = 4
     *          val s = a.reserve(40) // capacity = 40
     *          a eq s // true
@@ -58,6 +61,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          val b = a.reserve(2) // capacity = 2
     *          a eq b // true
     *          println(a) // prints: ArrayList(1, 2)
+    *          }}}
     * @param capacity new capacity of ArrayList
     * @return resized ArrayList
     */
@@ -69,11 +73,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
   /**
     * This method is used to insert value on some index.
     * Elements that have index bigger than passing are shifting to right
-    * If passing index is less than 0 or greater than last index of ArrayList - does nothing
-    * On other cases - insert element
-    * Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryInsert'
-    * Time complexity is O(n)
+    - If passing index is less than 0 or greater than last index of ArrayList - does nothing
+    - On other cases - insert element
+    * @note Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryInsert'
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.insert(0, -1)
     *          println(a) // prints: ArrayList(-1, 1, 2, 3, 4)
@@ -81,6 +86,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          println(a) // prints: ArrayList(-1, -2, 1, 2, 3, 4)
     *          a.insert(-1, 1)
     *          println(a) // prints: ArrayList(-1, -2, 1, 2, 3, 4)
+    *          }}}
     * @param onIndex index of inserting element
     * @param value value of inserting element
     * @return this ArrayList with inserted value
@@ -92,11 +98,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
   /**
     * This method is used to insert value on some index or return error of inserting.
     * Elements that have index bigger than passing are shifting to right
-    * If passing index is less than 0 or greater than last index of ArrayList - returns Failure
-    * On other cases - insert element
-    * Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryInsert'
-    * Time complexity is O(n)
+    - If passing index is less than 0 or greater than last index of ArrayList - returns Failure
+    - On other cases - insert element
+    * @note Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryInsert'
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.tryInsert(0, -1) // returns Success
     *          println(a) // prints: ArrayList(-1, 1, 2, 3, 4)
@@ -104,6 +111,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          println(a) // prints: ArrayList(-1, -2, 1, 2, 3, 4)
     *          a.tryInsert(-1, 1) // returns Failure
     *          println(a) // prints: ArrayList(-1, -2, 1, 2, 3, 4)
+    *          }}}
     * @param onIndex index of inserting element
     * @param value value of inserting element
     * @return Success when successfully inserted value or Failure with IllegalArgumentException
@@ -123,11 +131,13 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to prepend element to ArrayList
-    * Time complexity is O(n)
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2)
     *          0 +: a
     *          println(a) // prints: ArrayList(0, 1, 2)
+    *          }}}
     * @param that element to prepend
     * @return this ArrayList with prepended element
     */
@@ -148,11 +158,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to remove element at some index.
-    * If index is not in bounds of ArrayList - does nothing
-    * On other cases - removes element
-    * Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryRemoveAt'
-    * Time complexity is O(n)
+    - If index is not in bounds of ArrayList - does nothing
+    - On other cases - removes element
+    * @note Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryRemoveAt'
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.removeAt(0)
     *          println(a) // prints: ArrayList(2, 3, 4)
@@ -160,6 +171,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          println(a) // prints: ArrayList(2, 4)
     *          a.removeAt(-1)
     *          println(a) // prints: ArrayList(2, 4)
+    *          }}}
     * @param index index of removing element
     * @return this ArrayList without removing element
     */
@@ -170,9 +182,11 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to remove element at some index with explicit error returning.
-    * If index is not in bounds of ArrayList - returns Failure
-    * On other cases - removes element
+    - If index is not in bounds of ArrayList - returns Failure
+    - On other cases - removes element
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.tryRemoveAt(0) // Success
     *          println(a) // prints: ArrayList(2, 3, 4)
@@ -180,6 +194,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          println(a) // prints: ArrayList(2, 4)
     *          a.tryRemoveAt(-1) // Failure
     *          println(a) // prints: ArrayList(2, 4)
+    *          }}}
     * @param index index of removing element
     * @return Success if element was removed or Failure with IllegalArgumentException otherwise
     */
@@ -201,11 +216,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
   }
   /**
     * This method is used to change value of element on some index.
-    * If onIndex is greater than length of ArrayList or less than 0 - does nothing
-    * On other cases - updates value
-    * Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryUpdate'
-    * Time complexity is O(1)
+    - If onIndex is greater than length of ArrayList or less than 0 - does nothing
+    - On other cases - updates value
+    * @note Warning! On illegal argument this method does nothing. If you need explicit error returning use 'tryUpdate'
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.update(0, -1)
     *          println(a) // prints ArrayList(-1, 2, 3, 4)
@@ -213,6 +229,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          println(a) // prints ArrayList(-1, 2, -2, 4)
     *          a.update(-1, -1) // does nothing
     *          println(a) // prints ArrayList(-1, 2, -2, 4)
+    *          }}}
     * @param index index of value that need to be updated
     * @param newValue new value of element
     * @return this ArrayList with updated element
@@ -222,15 +239,17 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     else this
   /**
     * This method is used to change value of element on some index with explicit error returning.
-    * If onIndex is greater than length of ArrayList or less than 0 - does nothing
-    * On other cases - updates value
-    * Time complexity is O(1)
+    - If onIndex is greater than length of ArrayList or less than 0 - does nothing
+    - On other cases - updates value
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.tryUpdate(0, -1) // returns Success
     *          println(a) // prints ArrayList(-1, 2, 3, 4)
     *          a.tryUpdate(-1, -1) // returns Failure
     *          println(a) // prints ArrayList(-1, 2, -2, 4)
+    *          }}}
     * @param index index of value that need to be updated
     * @param newValue new value of element
     * @return Success if element was updated or Failure with IllegalArgumentException otherwise
@@ -250,10 +269,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
   /**
     * Used to return count of max elements that can be stored in ArrayList without resizing
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.capacity // 4
     *          ArrayList[Int]().capacity // defaultCapacity
     *          ArrayList.withCapacity[Int](20) // 20
+    *          }}}
     * @return capacity of array
     */
   def capacity: Int = array.length
@@ -287,16 +308,18 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to take n elements from start of ArrayList
-    * If count <= 0 - returns empty ArrayList
-    * If count >= length - returns copy of this ArrayList
-    * Otherwise - returns ArrayList with n first elements from this
-    * This method does not mutate ArrayList.
-    * Time complexity is O(n)
+    - If count <= 0 - returns empty ArrayList
+    - If count >= length - returns copy of this ArrayList
+    - Otherwise - returns ArrayList with n first elements from this
+    * @note This method does not mutate ArrayList.
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.take(2) // returns ArrayList(1, 2)
     *          a.take(-1) // returns ArrayList()
     *          a.take(10) // returns ArrayList(1, 2, 3, 4)
+    *          }}}
     * @param count count of elements that should be taken
     * @return new ArrayList with elements from start of this ArrayList
     */
@@ -312,15 +335,17 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to split array to two at specified index
-    * If index <= 0 - returns empty ArrayList and copy of this ArrayList
-    * If index >= length - return copy of this ArrayList and empty ArrayList
-    * Otherwise = returns two arrays
-    * Time complexity is O(n)
+    - If index <= 0 - returns empty ArrayList and copy of this ArrayList
+    - If index >= length - return copy of this ArrayList and empty ArrayList
+    - Otherwise = returns two arrays
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.splitAt(1) // returns (ArrayList(1), ArrayList(2, 3, 4))
     *          a.splitAt(0) // returns (ArrayList(), ArrayList(1, 2, 3, 4))
     *          a.splitAt(10) // return (ArrayList(1, 2, 3, 4), ArrayList())
+    *          }}}
     * @param index index which must be border of two ArrayLists
     * @return two ArrayLists, first that contains elements before index and second that contains elements after
     */
@@ -332,8 +357,9 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to create iterator of ArrayList
-    * Time Complexity is O(1)
+    * @note Time Complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          val it = a.iterator
     *          it.hasNext // returns true
@@ -342,6 +368,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          it.next // returns 3
     *          it.next // returns 4
     *          it.hasNext // returns false
+    *          }}}
     * @return iterator of this ArrayList
     */
   def iterator: Iterator[A] = new Iterator[A] {
@@ -358,38 +385,44 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to getcount of elements that ArrayList contains
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4, 5)
     *          a.size // returns 5
     *          a :+ 10
     *          a.size // returns 6
     *          ArrayList[Int]().size // returns 0
+    *          }}}
     * @return count of elements that ArrayList contains
     */
   override def size: Int = length
 
   /**
     * Used to safely get first element of ArrayList
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2)
     *          a.headOption // returns Some(1)
     *          val b = ArrayList.empty[Int]
     *          b.headOption // returns None
+    *          }}}
     * @return Some if there is at least one element, None otherwise
     */
   override def headOption: Option[A] = get(0)
 
   /**
     * Used to safely get element at specified index
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3)
     *          a.get(0) // returns Some(1)
     *          a.get(2) // returns Some(3)
     *          a.get(-1) // returns None
     *          a.get(10) // returns None
+    *          }}}
     * @param index index of element
     * @return Some if there is element with that index, None otherwise
     */
@@ -401,14 +434,16 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to get element at specified index.
-    * Warning! If index is not in bounds of ArrayList exception will be thrown.
+    * @note Warning! If index is not in bounds of ArrayList exception will be thrown.
     * If you want safe alternative - use 'get' method.
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4, 5)
     *          a(0) // returns 1
     *          a(3) // returns 4
     *          a(-1) // throws ArrayIndexOutOfBoundsException
+    *          }}}
     * @param index index of element
     * @return element on specified index
     * @throws ArrayIndexOutOfBoundsException if index is not in bound of ArrayList
@@ -417,30 +452,34 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to return elements of ArrayList except the first one.
-    * If this ArrayList is empty - returns new empty ArrayList
-    * This method does not mutate this ArrayList
-    * Time complexity is O(n)
+    - If this ArrayList is empty - returns new empty ArrayList
+    * @note This method does not mutate this ArrayList
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3)
     *          a.tail // returns ArrayList(2, 3)
     *          a.tail.tail // returns ArrayList(3)
     *          ArrayList[Int]().tail // returns ArrayList()
+    *          }}}
     * @return elements of ArrayList from index 1
     */
   def tail: ArrayList[A] = skip(1)
 
   /**
     * Used to skip n elements from start of ArrayList and return else
-    * If count >= length - returns empty ArrayList
-    * If count <= 0 - returns copy of this ArrayList
-    * Otherwise - returns ArrayList with last elements from this
-    * This method does not mutate this ArrayList.
-    * Time complexity is O(n)
+    - If count >= length - returns empty ArrayList
+    - If count <= 0 - returns copy of this ArrayList
+    - Otherwise - returns ArrayList with last elements from this
+    * @note This method does not mutate this ArrayList.
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.skip(2) // returns ArrayList(3, 4)
     *          a.skip(-1) // returns ArrayList(1, 2, 3, 4)
     *          a.skip(10) // returns ArrayList()
+    *          }}}
     * @param count count of elements that should be skipped
     * @return new ArrayList with elements from end of this ArrayList
     */
@@ -465,13 +504,15 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to append element to end of ArrayList
-    * If capacity of ArrayList equal to its size this operation will require resizing
-    * Time complexity is amortized O(1)
+    - If capacity of ArrayList equal to its size this operation will require resizing
+    * @note Time complexity is amortized O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(-1, 0, 1, 2, 3, 4) // capacity = 6
     *          a :+ 5 // returns ArrayList(1, 2, 3, 4, 5), will take O(n) time because capacity needs to be increased
     *          a :+ 6 // returns ArrayList(1, 2, 3, 4, 5, 6), will take O(1) time
     *          a :+ 7 // returns ArrayList(1, 2, 3, 4, 5, 6, 7), will take O(1) time
+    *          }}}
     * @param that appending element
     * @return this ArrayList with appended element
     */
@@ -494,10 +535,12 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to clear all elements
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          a.clear() // returns ArrayList()
+    *          }}}
     * @return this ArrayList without elements
     */
   def clear(): ArrayList[A] = {
@@ -508,9 +551,10 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
   /**
     * Used to compare this ArrayList with other ArrayList for equality
     * ArrayLists are equal if their length are same and elements match
-    * Warning! As other ArrayList can be passed anything you want. But only arrays will be compared.
-    * Time complexity is O(n)
+    * @note Warning! As other ArrayList can be passed anything you want. But only arrays will be compared.
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          val a = ArrayList(1, 2, 3, 4)
     *          val b = ArrayList(1, 2, 3, 4)
     *          a == b // returns true
@@ -518,6 +562,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
     *          a == (b :+ 5) // returns false
     *          a == ArrayList.empty[Int] // returns false
     *          a == "abc" // returns false
+    *          }}}
     * @param obj object to compare
     * @return true if arrays are equal, false otherwise
     */
@@ -529,11 +574,13 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to make string representation of ArrayList
-    * Time complexity is O(n)
+    * @note Time complexity is O(n)
     * @example
+    *          {{{
     *          ArrayList(1, 2, 3, 4).toString // returns "ArrayList(1, 2, 3, 4)"
     *          ArrayList(1).toString // returns "ArrayList(1)"
     *          ArrayList.empty[Int].toString // returns ArrayList()
+    *          }}}
     * @return string representation of this ArrayList
     */
   override def toString: String = {
@@ -554,7 +601,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to get part of ArrayList
-    * Time complexity is O(n)
+    * @note Time complexity is O(n)
     * @example
     *          {{{
     *            val a = ArrayList(1, 2, 3, 4)
@@ -572,7 +619,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to get new ArrayList that contains only unique elements of this ArrayList
-    * Time complexity is O(n). Space complexity is O(n)
+    * @note Time complexity is O(n). Space complexity is O(n)
     * @example
     *          {{{
     *            val a = ArrayList(1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3)
@@ -594,7 +641,7 @@ class ArrayList[A] private (private[this] val _capacity: Int = ArrayList.default
 
   /**
     * Used to get intersection between two ArrayLists
-    * Time complexity is O(m + n). Space complexity is O(n)
+    * @note Time complexity is O(m + n). Space complexity is O(n)
     * @note Note that duplicates are removed
     * @example
     *          {{{
@@ -630,8 +677,8 @@ object ArrayList {
 
   /**
     * Creates new ArrayList with specified capacity
-    * If capacity less than 0 - returns ArrayList with [[defaultCapacity]]
-    * Time complexity is O(1)
+    - If capacity less than 0 - returns ArrayList with [[defaultCapacity]]
+    * @note Time complexity is O(1)
     * @example
     *          {{{
     *            val a = ArrayList.withCapacity[Int](20) // Creates ArrayList of Int with capacity = 20
@@ -647,8 +694,8 @@ object ArrayList {
 
   /**
     * Creates new ArrayList with specified elements.
-    * Capacity of created ArrayList is count of passing elements.
-    * Time complexity is O(n)
+    - Capacity of created ArrayList is count of passing elements.
+    * @note Time complexity is O(n)
     * @example
     *          {{{
     *            val a = ArrayList(1, 2, 3, 4, 5) // Creates ArrayList of Int with elements 1, 2, 3, 4, 5
@@ -666,7 +713,7 @@ object ArrayList {
 
   /**
     * Creates new empty ArrayList with [[defaultCapacity]]
-    * Time complexity is O(1)
+    * @note Time complexity is O(1)
     * @tparam A type of elements in ArrayList
     * @return new empty ArrayList with [[defaultCapacity]]
     */
